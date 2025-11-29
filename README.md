@@ -2,6 +2,8 @@
 
 A modern, responsive web application that recommends movies based on your current mood. Built with React, TypeScript, and Vite, powered by The Movie Database (TMDB) API.
 
+**Live Demo:** [https://arnovism.github.io/movie-mood/](https://arnovism.github.io/movie-mood/)
+
 ## ✨ Features
 
 - **Mood-Based Recommendations**: Select your current mood and get personalized movie suggestions
@@ -23,8 +25,8 @@ A modern, responsive web application that recommends movies based on your curren
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/YOUR_USERNAME/movie-mood-recommender.git
-cd movie-mood-recommender
+git clone https://github.com/ArnovisM/movie-mood.git
+cd movie-mood
 ```
 
 2. Install dependencies:
@@ -65,50 +67,32 @@ Preview the production build:
 npm run preview
 ```
 
-## 📦 Deploying to GitHub Pages
+## 📦 Deployment
 
-### One-Time Setup
+This project uses **GitHub Actions** for automated deployment to GitHub Pages.
 
-1. Update `vite.config.ts` and replace `<REPO_NAME>` with your repository name:
-```typescript
-export default defineConfig({
-  plugins: [react()],
-  base: '/your-repo-name/',
-})
-```
+### How it works
 
-2. Install gh-pages (if not already installed):
-```bash
-npm install --save-dev gh-pages
-```
+1. The workflow is defined in `.github/workflows/deploy.yml`.
+2. Every push to the `main` branch triggers a build and deploy process.
+3. The API key is securely injected from GitHub Secrets during the build.
 
-### Deploy
+### Setup for Forking/Cloning
 
-Deploy to GitHub Pages:
-```bash
-npm run deploy
-```
+If you want to deploy your own version:
 
-This will:
-1. Build your project
-2. Deploy the `dist` folder to the `gh-pages` branch
-3. Your site will be available at `https://YOUR_USERNAME.github.io/REPO_NAME/`
-
-### GitHub Pages Configuration
-
-After deploying, go to your repository settings:
-1. Navigate to **Settings** → **Pages**
-2. Under **Source**, select the `gh-pages` branch
-3. Click **Save**
-
-Your site should be live within a few minutes!
+1. Go to your repository **Settings** → **Secrets and variables** → **Actions**.
+2. Create a new repository secret named `VITE_TMDB_API_KEY` with your TMDB API key.
+3. Go to **Settings** → **Pages**.
+4. Under **Source**, select **GitHub Actions**.
+5. Push changes to `main`.
 
 ## 🛠️ Tech Stack
 
 - **React 18** - UI library
 - **TypeScript** - Type safety
 - **Vite** - Build tool and dev server
-- **React Router** - Client-side routing
+- **React Router** - Client-side routing (HashRouter for GitHub Pages compatibility)
 - **Axios** - HTTP client
 - **Lucide React** - Icon library
 - **TMDB API** - Movie data
@@ -116,7 +100,7 @@ Your site should be live within a few minutes!
 ## 📁 Project Structure
 
 ```
-movie-mood-recommender/
+movie-mood/
 ├── src/
 │   ├── components/      # React components
 │   ├── context/         # React context providers
@@ -124,6 +108,7 @@ movie-mood-recommender/
 │   ├── styles/          # CSS variables and global styles
 │   └── utils/           # Utility functions
 ├── public/              # Static assets
+├── .github/workflows/   # GitHub Actions configuration
 ├── .env.example         # Environment variables template
 ├── vite.config.ts       # Vite configuration
 └── package.json         # Dependencies and scripts
@@ -134,14 +119,7 @@ movie-mood-recommender/
 - Never commit your `.env` file
 - Never share your TMDB API key publicly
 - The `.env` file is already in `.gitignore` to prevent accidental commits
-
-## 📝 Available Scripts
-
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm run preview` - Preview production build
-- `npm run lint` - Run ESLint
-- `npm run deploy` - Deploy to GitHub Pages
+- API keys for production are managed via GitHub Secrets
 
 ## 🤝 Contributing
 

@@ -76,7 +76,7 @@ const Footer: React.FC = () => {
                             <Github size={20} />
                         </a>
                         <a
-                            href="www.linkedin.com/in/arnovis-montero-312223233"
+                            href="https://www.linkedin.com/in/arnovis-montero-312223233"
                             target="_blank"
                             rel="noopener noreferrer"
                             style={{

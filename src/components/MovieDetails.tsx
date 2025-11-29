@@ -110,7 +110,7 @@ const MovieDetails: React.FC = () => {
 
                 <div className="movie-details-grid">
                     {/* Poster */}
-                    <div className="glass movie-details-poster" style={{ borderRadius: '1rem', overflow: 'hidden', position: 'sticky', top: '6rem' }}>
+                    <div className="glass movie-details-poster">
                         <img
                             src={movie.poster_path ? getImageUrl(movie.poster_path) : `https://source.unsplash.com/500x750/?${movie.genres[0]?.name || 'movie'}`}
                             alt={movie.title}
@@ -171,13 +171,14 @@ const MovieDetails: React.FC = () => {
                                     display: 'flex',
                                     alignItems: 'center',
                                     gap: '0.5rem',
-                                    background: inWatchlist ? 'rgba(255,255,255,0.1)' : 'rgba(255,255,255,0.1)',
+                                    background: inWatchlist ? 'rgba(255,255,255,0.2)' : 'var(--secondary)',
                                     color: 'white',
                                     padding: '0.75rem 1.5rem',
                                     borderRadius: '0.5rem',
                                     fontWeight: 'bold',
                                     fontSize: '1rem',
-                                    border: '1px solid rgba(255,255,255,0.2)'
+                                    border: inWatchlist ? '1px solid rgba(255,255,255,0.3)' : 'none',
+                                    transition: 'all 0.2s ease'
                                 }}
                             >
                                 {inWatchlist ? <Check size={20} /> : <Plus size={20} />}
@@ -297,11 +298,7 @@ const MovieDetails: React.FC = () => {
                         {similarMovies.length > 0 && (
                             <div style={{ marginTop: '4rem' }}>
                                 <h3 style={{ fontSize: '1.5rem', marginBottom: '1.5rem' }}>You Might Also Like</h3>
-                                <div style={{
-                                    display: 'grid',
-                                    gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))',
-                                    gap: '1.5rem'
-                                }}>
+                                <div className="movie-grid">
                                     {similarMovies.slice(0, 5).map(movie => (
                                         <MovieCard key={movie.id} movie={movie} />
                                     ))}
